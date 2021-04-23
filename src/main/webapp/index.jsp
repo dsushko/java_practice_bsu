@@ -3,7 +3,7 @@
 <body style="font-family: 'Roboto Light'">
     <div style="width: 100%; height: auto; text-align: center; font-size: 25pt; margin: 2.5%">
         <b>
-            What music do you prefer?
+            ${name}, what music do you prefer?
         </b>
         <div>
             We can offer 3 types:
