@@ -1,0 +1,39 @@
+[ {
+  "duration" : "4:22",
+  "author" : "Imagine Dragons",
+  "albumName" : " Evolve",
+  "name" : "I'll Make It Up To You",
+  "listeningStats" : {
+    "childrenUnder10Count" : 10,
+    "teenagers10To18Count" : 100,
+    "youth18To35Count" : 1000,
+    "people35To60Count" : 10000,
+    "oldsAbove60Count" : 1000,
+    "malesCount" : 6000,
+    "femalesCount" : 6000
+  },
+  "key" : "Em",
+  "id" : 8,
+  "subGenre" : "Indi-rock",
+  "hasExtremeVocals" : false,
+  "guitarEffects" : "None"
+}, {
+  "duration" : "2:57",
+  "author" : "test",
+  "albumName" : "test",
+  "name" : "test",
+  "listeningStats" : {
+    "childrenUnder10Count" : 2,
+    "teenagers10To18Count" : 2,
+    "youth18To35Count" : 2,
+    "people35To60Count" : 2,
+    "oldsAbove60Count" : 9999999,
+    "malesCount" : 1,
+    "femalesCount" : 9999999
+  },
+  "key" : "Bbm",
+  "id" : 10,
+  "subGenre" : "punk",
+  "hasExtremeVocals" : false,
+  "guitarEffects" : "2"
+} ]

@@ -1,0 +1,20 @@
+[ {
+  "duration" : "7:33",
+  "author" : "tchaikovsky",
+  "albumName" : "seasons",
+  "name" : "8th symphony ",
+  "listeningStats" : {
+    "childrenUnder10Count" : 0,
+    "teenagers10To18Count" : 1000,
+    "youth18To35Count" : 10000,
+    "people35To60Count" : 10000,
+    "oldsAbove60Count" : 100000,
+    "malesCount" : 60000,
+    "femalesCount" : 60000
+  },
+  "key" : "Ebm",
+  "id" : 23,
+  "releaseCentury" : 19,
+  "orchestraCount" : 17,
+  "vocalVoiceTypeRequired" : "Tenor"
+} ]

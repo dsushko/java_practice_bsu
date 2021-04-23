@@ -1,0 +1,41 @@
+[ {
+  "duration" : "4:37",
+  "author" : "lil peep",
+  "albumName" : "star shopping",
+  "name" : "star shopping",
+  "listeningStats" : {
+    "childrenUnder10Count" : 0,
+    "teenagers10To18Count" : 9005,
+    "youth18To35Count" : 1000,
+    "people35To60Count" : 0,
+    "oldsAbove60Count" : 0,
+    "malesCount" : 5,
+    "femalesCount" : 10000
+  },
+  "key" : "C",
+  "id" : 21,
+  "bpm" : 60,
+  "performerRace" : "white",
+  "performerAlive" : false,
+  "performerDeathType" : "drugs"
+}, {
+  "duration" : "3:54",
+  "author" : "Twenty One Pilots",
+  "albumName" : "Blurryface",
+  "name" : "Heavydirtysoul",
+  "listeningStats" : {
+    "childrenUnder10Count" : 10,
+    "teenagers10To18Count" : 99999,
+    "youth18To35Count" : 999999,
+    "people35To60Count" : 9999,
+    "oldsAbove60Count" : 99,
+    "malesCount" : 600000,
+    "femalesCount" : 600000
+  },
+  "key" : "Dm",
+  "id" : 22,
+  "bpm" : 126,
+  "performerRace" : "White",
+  "performerAlive" : true,
+  "performerDeathType" : "None"
+} ]
