@@ -1,9 +1,6 @@
 package company;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.Scanner;
 
 public class Song {
@@ -24,18 +21,26 @@ public class Song {
         this.albumName = albumName;
         this.listeningStats = listeningStats;
         this.key = key;
-        File iddb = new File("db_id.txt");
-        if(iddb.exists()) {
-            Scanner read = new Scanner("db_id.txt");
-            id = read.nextInt();
-            FileWriter writer = new FileWriter("db_id.txt", false);
-            writer.write(id+1);
-        } else {
-            id = 1;
-            iddb.createNewFile();
-            FileWriter writer = new FileWriter("db_id.txt");
-            writer.write("1");
+        int fileId;
+        try (Scanner scanner = new Scanner (new File ("c:/testlab3/test_lab3/id.db"))){
+            while(scanner.hasNext() && scanner.hasNextInt()){
+                fileId = scanner.nextInt();
+                this.id = fileId;
+            }
         }
+        try(PrintWriter fout = new PrintWriter("c:/testlab3/test_lab3/id.db")){
+            fout.println( Integer.toString(id+1));
+        }
+
+    }
+    public Song(int id, String author, String name, String duration, String albumName, ListeningStats listeningStats, String key) throws IOException {
+        this.author = author;
+        this.name = name;
+        this.duration = duration;
+        this.albumName = albumName;
+        this.listeningStats = listeningStats;
+        this.key = key;
+        this.id = id;
     }
 
     @Override
@@ -101,5 +106,11 @@ public class Song {
         else
             this.key = null;
     }
-}
 
+    public int getId(){
+        return id;
+    }
+    void setId(int id){
+        this.id = id;
+    }
+}

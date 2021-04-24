@@ -4,9 +4,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -242,7 +239,7 @@ public class ListeningStats {
 
     public Element toXML(String name, Document document) {
 
-        org.w3c.dom.Element result =  document.createElement(name);
+        Element result =  document.createElement(name);
 
         Element eChildrenUnder10Count = document.createElement("childrenUnder10Count");
         Element eTeenagers10To18Count = document.createElement("teenagers10To18Count");

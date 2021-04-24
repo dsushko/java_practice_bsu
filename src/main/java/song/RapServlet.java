@@ -3,6 +3,7 @@ package song;
 import company.RapSong;
 import company.RockSong;
 import controllers.SongController;
+import services.ServiceLayerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,10 +24,10 @@ public class RapServlet extends HttpServlet {
             controller = new SongController<>(RapSong.class, "json");
             request.setAttribute("songs", controller.GetSongs());
             request.getRequestDispatcher("rap.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("message", e.getStackTrace());
-            request.getRequestDispatcher("exception.jsp").forward(request, response);
+        } catch (ServiceLayerException | ServletException e) {
+            //e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
         }
 
     }

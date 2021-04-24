@@ -3,6 +3,7 @@ package song;
 import company.ListeningStats;
 import company.Opera;
 import controllers.SongController;
+import services.ServiceLayerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,10 +42,10 @@ public class OperaEditServlet extends HttpServlet {
             Opera model = new Opera(author, name, duration, albumName, newStats, key, releaseCentury, orchestraCount, vocalVoiceTypeRequired);
             controller.EditSong(thisId, model);
             response.sendRedirect("../opera");
-        } catch (Exception e) {
+        } catch (ServiceLayerException e) {
             //e.printStackTrace();
-            request.setAttribute("message", e.getStackTrace());
-            request.getRequestDispatcher("exception.jsp").forward(request, response);
+            request.setAttribute("message", e.getMessage());
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
         }
     }
 

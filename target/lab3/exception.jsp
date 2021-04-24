@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Something went wrong!</title>
 </head>
 <body>
-
+<div style="width: 100%; text-align: center;">
+<p>${message}</p>
+</div>
 </body>
 </html>

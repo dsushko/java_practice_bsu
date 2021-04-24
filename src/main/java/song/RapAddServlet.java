@@ -4,6 +4,7 @@ import company.ListeningStats;
 import company.RapSong;
 import company.RockSong;
 import controllers.SongController;
+import services.ServiceLayerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,17 +41,14 @@ public class RapAddServlet extends HttpServlet {
             ListeningStats newStats = new ListeningStats(under10,_10to18, _18to35, _35to60, over60, men, women);
 
             RapSong model = new RapSong(author, name, duration, albumName, newStats, key,
-                    bpm, performerRace, isPerformerAlive, performerDeathType);
+                    bpm, performerRace, isPerformerAlive,performerDeathType);
             controller.AddSong(model);
-            response.sendRedirect("../rap");
-        } catch (Exception e) {
-            e.printStackTrace();
-            //request.setAttribute("message", e.getMessage());
-            //request.getRequestDispatcher("exception.jsp").forward(request, response);
-        }
-    }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/rap/rap_create.jsp").forward(request, response);
+            response.sendRedirect("../rap");
+        } catch (ServiceLayerException e) {
+            //e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
+        }
     }
 }

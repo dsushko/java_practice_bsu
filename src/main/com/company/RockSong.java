@@ -1,84 +1,57 @@
 package com.company;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.Vector;
 
-public class RapSong extends Song {
-    protected int bpm;
-    protected String performerRace;
-    protected boolean isPerformerAlive;
-    protected String performerDeathType;
-    public RapSong(){
+public class RockSong extends Song {
+    protected String subGenre;
+    protected boolean hasExtremeVocals;
+    protected String guitarEffects;
+
+    public String getSubGenre() {
+        return subGenre;
+    }
+
+    public void setSubGenre(String subGenre) {
+        this.subGenre = subGenre;
+    }
+
+    public boolean isHasExtremeVocals() {
+        return hasExtremeVocals;
+    }
+
+    public void setHasExtremeVocals(boolean hasExtremeVocals) {
+        this.hasExtremeVocals = hasExtremeVocals;
+    }
+
+    public String getGuitarEffects() {
+        return guitarEffects;
+    }
+
+    public void setGuitarEffects(String guitarEffects) {
+        this.guitarEffects = guitarEffects;
+    }
+
+    public RockSong(){
         super();
     }
-    public RapSong(String author, String name, String duration, String albumName, ListeningStats listeningStats, String key, int bpm, String performerRace, boolean isPerformerAlive, String performerDeathType) {
-        super(author, name, duration, albumName, listeningStats, key);
-        this.bpm = bpm;
-        this.performerRace = performerRace;
-        this.isPerformerAlive = isPerformerAlive;
-        this.performerDeathType = performerDeathType;
+
+    public RockSong(String author, String name, String duration, String albumName, ListeningStats listeningStats, String key,
+                    String subGenre, boolean hasExtremeVocals, String guitarEffects) throws IOException {
+        super(author,name,duration,albumName,listeningStats,key);
+        this.subGenre = subGenre;
+        this.hasExtremeVocals = hasExtremeVocals;
+        this.guitarEffects = guitarEffects;
     }
 
     @Override
     public String toString() {
         return super.toString() + '\n' +
-                "BPM: " + bpm + '\n' +
-                "Performer race: " + performerRace + '\n' +
-                "Is performer alive: " + isPerformerAlive + '\n' +
-                "Performer death type: " + performerDeathType + '\n';
+                "Subgenre: " + subGenre + '\n' +
+                "Has extreme vocals: " + hasExtremeVocals + '\n' +
+                "Guitar effects: " + guitarEffects + '\n';
     }
 
-    @Override
-    public String toCSV() {
-        return super.toCSV() + "," + bpm + ",\"" + performerRace + "\"," + isPerformerAlive + ",\"" + performerDeathType +"\"";
-    }
-
-    public int getBpm() {
-        return bpm;
-    }
-
-    public void setBpm(int bpm) {
-        this.bpm = bpm;
-    }
-
-    public String getPerformerRace() {
-        return performerRace;
-    }
-
-    public void setPerformerRace(String performerRace) {
-        this.performerRace = performerRace;
-    }
-
-    public boolean isPerformerAlive() {
-        return isPerformerAlive;
-    }
-
-    public void setPerformerAlive(boolean performerAlive) {
-        isPerformerAlive = performerAlive;
-    }
-
-    public String getPerformerDeathType() {
-        return performerDeathType;
-    }
-
-    public void setPerformerDeathType(String performerDeathType) {
-        this.performerDeathType = performerDeathType;
-    }
-
-    public static Vector<Song> readCSV(String filename) throws FileNotFoundException {
+/*    public static Vector<Song> readCSV(String filename) throws FileNotFoundException {
         Vector<Song> result = new Vector<>();
         File ifile = new File(filename);
         Scanner input = new Scanner(ifile);
@@ -88,12 +61,12 @@ public class RapSong extends Song {
         String albumName;
         String key;
         ListeningStats listeningStats;
-        int bpm;
-        String performerRace;
-        boolean isPerformerAlive;
-        String performerDeathType;
+        String subGenre;
+        boolean hasExtremeVocals;
+        String[] guitarEffects;
 
         String valueBuffer = "";
+
         while(input.hasNextLine()){
             input.useDelimiter(",");
 
@@ -116,26 +89,24 @@ public class RapSong extends Song {
             listeningStats = ListeningStats.convertCSVToStats(input.nextLine());
             input.useDelimiter(",");
 
-            valueBuffer = input.next();
-            bpm = Integer.parseInt(valueBuffer);
-
-            performerRace = input.next();
-            performerRace = performerRace.substring(1, performerRace.length() - 1);
+            subGenre = input.next();
+            subGenre = subGenre.substring(1, subGenre.length() - 1);
 
             valueBuffer = input.next();
-            isPerformerAlive = Boolean.parseBoolean(valueBuffer);
+            hasExtremeVocals = Boolean.parseBoolean(valueBuffer);
 
-            performerDeathType = input.next();
-            performerDeathType = performerDeathType.substring(1, performerDeathType.length() - 1);
-
-
-            result.add(new RapSong(author,name,duration,albumName,listeningStats,key, bpm, performerRace, isPerformerAlive, performerDeathType));
+            input.useDelimiter("\\[");
+            valueBuffer = input.next();
+            input.useDelimiter("]");
+            valueBuffer = input.next();
+            guitarEffects = valueBuffer.split(",");
+            input.useDelimiter("\n");
+            result.add(new RockSong(author,name,duration,albumName,listeningStats,key, subGenre, hasExtremeVocals, guitarEffects));
         }
 
         return result;
-    }
+    }*/
 /*
-
     public static Vector<Song> readXML(String filename) throws IOException, ParserConfigurationException, SAXException {
         Vector<Song> result = new Vector<>();
         File ifile = new File(filename);
@@ -179,6 +150,6 @@ public class RapSong extends Song {
         }
         return result;
     }
-*/
+    */
 
 }

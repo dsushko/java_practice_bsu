@@ -3,6 +3,7 @@ package song;
 import company.ListeningStats;
 import company.RockSong;
 import controllers.SongController;
+import services.ServiceLayerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,9 +42,10 @@ public class RockAddServlet extends HttpServlet {
             controller.AddSong(model);
 
             response.sendRedirect("../rock");
-        } catch (Exception e) {
+        } catch (ServiceLayerException e) {
+            //e.printStackTrace();
             request.setAttribute("message", e.getMessage());
-            request.getRequestDispatcher("exception.jsp").forward(request, response);
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
         }
     }
 

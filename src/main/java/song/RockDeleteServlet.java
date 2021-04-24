@@ -2,6 +2,7 @@ package song;
 
 import company.RockSong;
 import controllers.SongController;
+import services.ServiceLayerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,9 +24,10 @@ public class RockDeleteServlet extends HttpServlet {
             controller = new SongController<>(RockSong.class, "json");
             controller.DeleteSong(id);
             response.sendRedirect("../rock");
-        } catch (Exception e) {
+        } catch (ServiceLayerException e) {
+            //e.printStackTrace();
             request.setAttribute("message", e.getMessage());
-            request.getRequestDispatcher("exception.jsp").forward(request, response);
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
         }
     }
 }

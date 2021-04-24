@@ -3,6 +3,7 @@ package song;
 import company.Opera;
 import company.RockSong;
 import controllers.SongController;
+import services.ServiceLayerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,12 +25,14 @@ public class EditorOperaServlet extends HttpServlet {
             controller = new SongController<>(Opera.class, "json");
             Opera song = controller.GetSong(id);
             request.setAttribute("song", song);
-        } catch (Exception e){
-            request.setAttribute("message", e.getStackTrace());
-            request.getRequestDispatcher("exception.jsp").forward(request, response);
+
+            request.setAttribute("id", id);
+            request.getRequestDispatcher("opera_edit.jsp").forward(request, response);
+        } catch (ServiceLayerException | ServletException e) {
+            //e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
         }
 
-        request.setAttribute("id", id);
-        request.getRequestDispatcher("opera_edit.jsp").forward(request, response);
     }
 }

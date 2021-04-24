@@ -3,7 +3,9 @@ package song;
 import company.ListeningStats;
 import company.RapSong;
 import company.RockSong;
+import company.Opera;
 import controllers.SongController;
+import services.ServiceLayerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +17,8 @@ import java.io.IOException;
 @WebServlet(name = "RockEditServlet", value = "/rock/post")
 public class RockEditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+        try {
+            String name = request.getParameter("name");
         String author = request.getParameter("author");
         String duration = request.getParameter("duration");
         String albumName = request.getParameter("albumName");
@@ -33,7 +36,6 @@ public class RockEditServlet extends HttpServlet {
         int women = Integer.parseInt(request.getParameter("women"));
 
         SongController<RockSong> controller;
-        try {
             controller = new SongController<>(RockSong.class, "json");
             ListeningStats newStats = new ListeningStats(under10,_10to18, _18to35, _35to60, over60, men, women);
             int thisId = Integer.parseInt(request.getParameter("id"));
@@ -43,9 +45,10 @@ public class RockEditServlet extends HttpServlet {
             controller.EditSong(thisId, model);
 
             response.sendRedirect("../rock");
-        } catch (Exception e) {
+        } catch (ServiceLayerException e) {
+            //e.printStackTrace();
             request.setAttribute("message", e.getMessage());
-            request.getRequestDispatcher("exception.jsp").forward(request, response);
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
         }
     }
 

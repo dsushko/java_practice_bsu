@@ -31,7 +31,6 @@ public class RapSong extends Song {
                 "Performer death type: " + performerDeathType + '\n';
     }
 
-
     public int getBpm() {
         return bpm;
     }

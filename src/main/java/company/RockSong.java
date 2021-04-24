@@ -35,7 +35,14 @@ public class RockSong extends Song {
         super();
     }
 
-    public RockSong(String author, String name, String duration, String albumName, ListeningStats listeningStats, String key,
+    public RockSong(int id, String author, String name, String duration, String albumName, ListeningStats listeningStats, String key,
+                    String subGenre, boolean hasExtremeVocals, String guitarEffects) throws IOException {
+        super(id, author,name,duration,albumName,listeningStats,key);
+        this.subGenre = subGenre;
+        this.hasExtremeVocals = hasExtremeVocals;
+        this.guitarEffects = guitarEffects;
+    }
+    public RockSong( String author, String name, String duration, String albumName, ListeningStats listeningStats, String key,
                     String subGenre, boolean hasExtremeVocals, String guitarEffects) throws IOException {
         super(author,name,duration,albumName,listeningStats,key);
         this.subGenre = subGenre;
@@ -50,4 +57,5 @@ public class RockSong extends Song {
                 "Has extreme vocals: " + hasExtremeVocals + '\n' +
                 "Guitar effects: " + guitarEffects + '\n';
     }
+
 }

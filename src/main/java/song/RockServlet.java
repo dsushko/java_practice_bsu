@@ -2,6 +2,7 @@ package song;
 
 import company.RockSong;
 import controllers.SongController;
+import services.ServiceLayerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,11 +30,10 @@ public class RockServlet extends HttpServlet {
             }
             request.setAttribute("songs", songs);
             request.getRequestDispatcher("rock.jsp").forward(request, response);
-        } catch (Exception e) {
+        } catch (ServiceLayerException | ServletException e) {
             //e.printStackTrace();
-            request.setAttribute("message", e.getStackTrace());
-            request.getRequestDispatcher("exception.jsp").forward(request, response);
+            request.setAttribute("message", e.getMessage());
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
         }
-
     }
 }
