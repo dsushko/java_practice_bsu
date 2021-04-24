@@ -5,8 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public interface DAOInterface<T> {
-    List<T> read(String filename) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
+    List<T> read(String filename) throws DAOLayerException;
 
-    void write(List<T> data, String filename) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException;
+    void write(List<T> data, String filename) throws DAOLayerException;
 
 }

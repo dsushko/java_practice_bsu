@@ -96,17 +96,22 @@ public class CsvDAO<T> extends AbstractDAO<T> {
     }
 
     @Override
-    public void write(List<T> list, String filename) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        printWriter = new PrintWriter(filename);
-        for (T object : list) {
-            writeObject(object, object.getClass());
-            printWriter.print("\n");
+    public void write(List<T> list, String filename) throws DAOLayerException {
+        try {
+            printWriter = new PrintWriter(filename);
+            for (T object : list) {
+                writeObject(object, object.getClass());
+                printWriter.print("\n");
+            }
+            printWriter.close();
+        } catch (Exception e){
+            throw new DAOLayerException("Couldn't write CSV");
         }
-        printWriter.close();
     }
 
     @Override
-    public List<T> read(String filename) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public List<T> read(String filename) throws  DAOLayerException {
+        try{
         List<T> list = new ArrayList<>();
         Scanner scanner = new Scanner(filename);
         while (scanner.hasNextLine()) {
@@ -114,6 +119,9 @@ public class CsvDAO<T> extends AbstractDAO<T> {
             list.add((T) readObject(null));
         }
         return list;
+        } catch (Exception e){
+            throw new DAOLayerException("Couldn't read CSV");
+        }
     }
 }
 

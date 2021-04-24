@@ -138,6 +138,7 @@ public class SongService<T extends Song> {
             lockers[type][2].unlock();
         }
     }
+
 /*
     public double AverageListenersByAgeGroupAndGenre(String group, String genre) throws NoSuchMethodException, IOException, InstantiationException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
         List<T> songs = Dao.read("rock.json");
@@ -293,17 +294,19 @@ public class SongService<T extends Song> {
     }
 
     public String ReturnFilename(){
+        String base = "C:/testlab3/test_lab3/";
         if(type == RockSong.class) {
-            return "C:/Users/ъуъ/lab3_/rock." + source;
+            base = base.concat("rock");
         }
         else
         if(type == RapSong.class) {
-            return "C:/Users/ъуъ/lab3_/rap." + source;
+            base = base.concat("rap");
         }
         else
         //if(type == Opera.class)
-            return "C:/Users/ъуъ/lab3_/opera." + source;
-
+            base = base.concat("opera");
+        base = base.concat(".");
+        return base.concat(source);
     }
 
     public List<T> SortByListenersAgeGroup(List<T> songs, String group){

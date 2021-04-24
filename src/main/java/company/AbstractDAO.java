@@ -11,10 +11,10 @@ abstract public class AbstractDAO<T> implements DAOInterface<T> {
         this.type = type;
     }
 
-    public abstract List<T> read(String filename) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
+    public abstract List<T> read(String filename) throws DAOLayerException;
 
     @Override
-    public void write(List<T> data, String filename) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void write(List<T> data, String filename) throws DAOLayerException {
 
     }
 }
